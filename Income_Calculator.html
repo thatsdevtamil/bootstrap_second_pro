@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Income Calculator</h1>
+        <!-- Banking Services Section -->
+        <div>
+            <div class="section-title">Banking Services</div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="moneyTransfer" class="form-label">Money Transfer</label>
+                    <input type="number" class="form-control" id="moneyTransfer" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹5</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="aadharPay" class="form-label">Aadhaar ATM</label>
+                    <input type="number" class="form-control" id="aadharPay" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹3</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="miniStatement" class="form-label">Mini Statement</label>
+                    <input type="number" class="form-control" id="miniStatement" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹1</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Utility Services Section -->
+        <div>
+            <div class="section-title">Utility Services</div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="electricityBill" class="form-label">Electricity Bill</label>
+                    <input type="number" class="form-control" id="electricityBill" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹7.25</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="gasBill" class="form-label">Gas Bill</label>
+                    <input type="number" class="form-control" id="gasBill" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹5.25</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="waterBill" class="form-label">Water Bill</label>
+                    <input type="number" class="form-control" id="waterBill" value="1" min="0" onchange="calculateEarnings()">
+                    <small class="text-muted">Job Earning: ₹5</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Earnings -->
+        <div class="mt-4">
+            <h2>Total Earnings: ₹<span id="totalEarnings">0.00</span></h2>
+        </div>
+    </div>
+
+    <script>
+        function calculateEarnings() {
+            const earnings = {
+                moneyTransfer: 5,
+                aadharPay: 3,
+                miniStatement: 1,
+                electricityBill: 7.25,
+                gasBill: 5.25,
+                waterBill: 5
+            };
+
+            let total = 0;
+            for (let key in earnings) {
+                const input = document.getElementById(key);
+                if (input) {
+                    total += input.value * earnings[key];
+                }
+            }
+
+            document.getElementById("totalEarnings").textContent = total.toFixed(2);
+        }
+
+        // Initial calculation
+        calculateEarnings();
+    </script>
+</body>
+</html>
